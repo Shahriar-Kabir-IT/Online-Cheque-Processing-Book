@@ -8,12 +8,42 @@ ini_set('session.cookie_samesite', 'Strict');
 
 session_start();
 
-// Session timeout handling
+// Update last activity time on each request
+if (isset($_SESSION['oa_id'])) {
+    if (!isset($_SESSION['last_activity'])) {
+        $_SESSION['last_activity'] = time();
+    }
+    
+    // Check if session has expired (30 minutes of inactivity)
+    $inactive_time = time() - $_SESSION['last_activity'];
+    if ($inactive_time > SESSION_TIMEOUT) {
+        session_unset();
+        session_destroy();
+        // Return JSON for AJAX requests, otherwise redirect
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'timeout', 'redirect' => 'cp/login.php?msg=timeout']);
+            exit();
+        }
+        header("Location: cp/login.php?msg=timeout");
+        exit();
+    }
+    
+    // Update last activity time
+    $_SESSION['last_activity'] = time();
+}
+
+// Session timeout handling (legacy support)
 if (isset($_SESSION['start'])) {
     $session_life = time() - $_SESSION['start'];
     if ($session_life > SESSION_TIMEOUT) {
         session_unset();
         session_destroy();
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'timeout', 'redirect' => 'cp/login.php?msg=timeout']);
+            exit();
+        }
         header("Location: cp/login.php?msg=timeout");
         exit();
     }

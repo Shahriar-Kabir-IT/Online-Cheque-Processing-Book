@@ -25,9 +25,9 @@ if (isLoggedIn()) {
                 <div class="alert alert-<?php echo isset($_GET['error']) ? 'error' : 'info'; ?>">
                     <?php 
                     if (isset($_GET['error'])) {
-                        echo 'Invalid email or password. Please try again.';
+                        echo 'Invalid username or password. Please try again.';
                     } elseif (isset($_GET['msg']) && $_GET['msg'] === 'timeout') {
-                        echo 'Your session has expired. Please login again.';
+                        echo 'Your session has expired due to inactivity. Please login again.';
                     }
                     ?>
                 </div>

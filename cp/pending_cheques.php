@@ -42,7 +42,7 @@ $pendingCheques = $Cheque->ListAllCHQ("c.ocq_status = 2", [], "c.ocq_prepare_dat
                         <td><?php echo formatDate($chq['ocq_date']); ?></td>
                         <td><?php echo $chq['ocq_type'] == 1 ? 'Company' : 'Personal'; ?></td>
                         <td>
-                            <a href="print_cheque.php?ocq_id=<?php echo $chq['ocq_id']; ?>" class="btn btn-sm btn-primary">Print</a>
+                            <a href="print_cheque.php?ocq_id=<?php echo $chq['ocq_id']; ?>&return=pending_cheques.php" class="btn btn-sm btn-primary">Print</a>
                             <a href="edit_cheque.php?ocq_id=<?php echo $chq['ocq_id']; ?>" class="btn btn-sm btn-secondary">Edit</a>
                             <a href="operation_cheque.php?action=delete&ocq_id=<?php echo $chq['ocq_id']; ?>" 
                                class="btn btn-sm btn-danger" 

@@ -11,6 +11,7 @@ requireLogin();
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/navi.css">
     <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="../js/session-timeout.js"></script>
 </head>
 <body>
     <header class="main-header">

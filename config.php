@@ -17,6 +17,6 @@ define('APP_NAME', 'ANANTA OCPB - Online Cheque Processing Book');
 define('BASE_URL', '/account'); // Adjust if the project is in a different web root folder
 
 // Session configuration
-define('SESSION_TIMEOUT', 3600); // seconds
-date_default_timezone_set('Asia/Kolkata'); // Change to your preferred timezone
+define('SESSION_TIMEOUT', 1800); // 30 minutes in seconds
+date_default_timezone_set('Asia/Dhaka'); // Change to your preferred timezone
 

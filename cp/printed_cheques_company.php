@@ -106,7 +106,7 @@ $printedCheques = $Cheque->ListAllCHQ1($filterStr, $params, "c.ocq_print_datetim
                             <td><?php echo formatDate($chq['ocq_date']); ?></td>
                             <td><?php echo $chq['ocq_print_datetime'] ? date('d/m/Y H:i', strtotime($chq['ocq_print_datetime'])) : 'N/A'; ?></td>
                             <td>
-                                <a href="print_cheque.php?ocq_id=<?php echo $chq['ocq_id']; ?>" class="btn btn-sm btn-primary">View/Print</a>
+                                <a href="print_cheque.php?ocq_id=<?php echo $chq['ocq_id']; ?>&return=printed_cheques_company.php" class="btn btn-sm btn-primary">View/Print</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

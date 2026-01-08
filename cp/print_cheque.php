@@ -20,6 +20,21 @@ if (empty($cheques)) {
 
 $chq = $cheques[0];
 
+// Determine return URL based on referrer or status
+$returnUrl = Validation::getGet('return', '');
+if (empty($returnUrl)) {
+    // Check HTTP referrer
+    $referrer = $_SERVER['HTTP_REFERER'] ?? '';
+    if (strpos($referrer, 'printed_cheques') !== false) {
+        $returnUrl = 'printed_cheques_company.php';
+    } elseif (strpos($referrer, 'pending_cheques') !== false) {
+        $returnUrl = 'pending_cheques.php';
+    } else {
+        // Default based on current status
+        $returnUrl = ($chq['ocq_status'] == 1) ? 'printed_cheques_company.php' : 'pending_cheques.php';
+    }
+}
+
 // Update status to printed if pending
 if ($chq['ocq_status'] == 2) {
     $Cheque->ocq_id = $chq['ocq_id'];
@@ -83,7 +98,7 @@ if ($chq['ocq_status'] == 2) {
 <body>
     <div class="no-print" style="text-align: center; margin-bottom: 20px;">
         <button onclick="window.print()" style="padding: 10px 20px; font-size: 16px;">Print</button>
-        <a href="pending_cheques.php" style="padding: 10px 20px; font-size: 16px; margin-left: 10px;">Back</a>
+        <a href="<?php echo htmlspecialchars($returnUrl); ?>" style="padding: 10px 20px; font-size: 16px; margin-left: 10px;">Back</a>
     </div>
     
     <div class="cheque-print">

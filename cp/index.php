@@ -83,7 +83,7 @@ $accounts = $Account->ListAllAccount();
                                 <td><?php echo formatCurrency($chq['ocq_amount']); ?></td>
                                 <td><?php echo formatDate($chq['ocq_date']); ?></td>
                                 <td>
-                                    <a href="print_cheque.php?ocq_id=<?php echo $chq['ocq_id']; ?>" class="btn btn-sm btn-primary">Print</a>
+                                    <a href="print_cheque.php?ocq_id=<?php echo $chq['ocq_id']; ?>&return=index.php" class="btn btn-sm btn-primary">Print</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
