@@ -1,0 +1,2 @@
+<?php
+// Directory protection

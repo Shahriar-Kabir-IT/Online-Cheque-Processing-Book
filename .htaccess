@@ -1,0 +1,36 @@
+# OCPB .htaccess Configuration
+
+# Enable Rewrite Engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /account/
+    
+    # Redirect to login if not authenticated (optional - handled by PHP)
+    # RewriteCond %{REQUEST_URI} !^/account/cp/login\.php$
+    # RewriteCond %{REQUEST_URI} !^/account/cp/authentication\.php$
+    # RewriteRule ^cp/.*$ cp/login.php [R=302,L]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# PHP Settings
+<IfModule mod_php7.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "\.(sql|md|log)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

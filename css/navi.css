@@ -1,0 +1,30 @@
+/* Navigation Styles - Additional styles if needed */
+
+.main-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.main-nav a.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    background: var(--bg-color);
+}
+
+/* Mobile menu toggle (if needed in future) */
+.mobile-menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 1rem;
+    }
+}
