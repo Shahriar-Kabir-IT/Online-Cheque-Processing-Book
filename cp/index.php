@@ -16,9 +16,9 @@ $printedCount = count($Cheque->ListAll("ocq_status = 1"));
 $cancelledCount = count($Cheque->ListAll("ocq_status = 3"));
 $totalAccounts = count($Account->ListAll());
 
-// Get recent pending cheques
+// Get recent pending cheques (limit to 4 for compact display)
 $recentPending = $Cheque->ListAllCHQ("c.ocq_status = 2", [], "c.ocq_prepare_datetime", "DESC");
-$recentPending = array_slice($recentPending, 0, 5);
+$recentPending = array_slice($recentPending, 0, 4);
 
 // Get account summary
 $accounts = $Account->ListAllAccount();
@@ -107,7 +107,7 @@ $accounts = $Account->ListAllAccount();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach (array_slice($accounts, 0, 5) as $acc): ?>
+                        <?php foreach (array_slice($accounts, 0, 4) as $acc): ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($acc['acc_number']); ?></td>
                                 <td><?php echo htmlspecialchars($acc['company_name'] ?? 'N/A'); ?></td>

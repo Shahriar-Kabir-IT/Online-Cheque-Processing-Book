@@ -17,6 +17,9 @@ requireLogin();
     <header class="main-header">
         <div class="header-content">
             <div class="logo">
+                <div class="logo-container">
+                    <img src="../img/logo.png" alt="ANANTA OCPB Logo">
+                </div>
                 <h1><?php echo APP_NAME; ?></h1>
             </div>
             <div class="user-info">

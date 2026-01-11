@@ -1,15 +1,33 @@
-/* Navigation Styles - Additional styles if needed */
+/* Professional Navigation Styles */
 
 .main-nav {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    background: #ffffff;
 }
 
 .main-nav a.active {
-    color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
-    background: var(--bg-color);
+    color: #3f7297;
+    border-bottom-color: #3f7297;
+    background: #f5f7fa;
+    font-weight: 600;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #3f7297;
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+    width: 100%;
 }
 
 /* Mobile menu toggle (if needed in future) */
@@ -22,9 +40,13 @@
         display: block;
         background: none;
         border: none;
-        color: var(--text-primary);
+        color: #1f2937;
         font-size: 1.5rem;
         cursor: pointer;
         padding: 1rem;
+    }
+    
+    .main-nav {
+        position: relative;
     }
 }

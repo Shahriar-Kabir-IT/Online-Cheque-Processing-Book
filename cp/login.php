@@ -18,8 +18,9 @@ if (isLoggedIn()) {
     <div class="login-container">
         <div class="login-box">
             <div class="login-header">
+                <img src="../img/logo.png" alt="ANANTA OCPB Logo">
                 <h1><?php echo APP_NAME; ?></h1>
-                <p>Ananta Online Cheque Processing Book</p>
+                <p>Online Cheque Processing Book</p>
             </div>
             <?php if (isset($_GET['error']) || isset($_GET['msg'])): ?>
                 <div class="alert alert-<?php echo isset($_GET['error']) ? 'error' : 'info'; ?>">
